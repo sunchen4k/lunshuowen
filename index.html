@@ -186,6 +186,8 @@ input,select{font-family:inherit;color:inherit}
 .tag-youo{color:var(--ink-3);background:var(--line-2)}
 .tag-you{color:var(--green);background:var(--green-soft)}
 .ptext{font-family:var(--serif);font-size:15px;line-height:1.85;color:var(--ink);text-align:justify}
+.tag-up{color:var(--gold);background:color-mix(in srgb,var(--gold) 15%,transparent)}
+.ptext-up{font-family:var(--sans);font-size:13.5px;line-height:1.85;color:var(--ink);text-align:justify}
 .placeholder-text{color:var(--ink-3);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;font-style:italic}
 .placeholder-text .hint{font-family:var(--sans);font-style:normal;font-size:11px;color:var(--ink-3);margin-left:8px}
 .fen{width:100%;font-family:var(--serif);font-size:15px;line-height:1.6;color:var(--ink);background:transparent;border:1px dashed var(--line);border-radius:8px;padding:6px 10px;outline:none;transition:border .2s}
@@ -449,6 +451,32 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>'
 function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
 function allWords(){ const r=[]; DATA.forEach(c=>c.words.forEach(w=>r.push(Object.assign({},w,{category:c})))); return r; }
 function isFan(w){ return w.category && w.category.id==='fanfang'; }
+const YOU2 = {
+  yingjia:'头部通吃的时代，不进则退：与其被动边缘化，不如主动抢位，把先发优势变成别人抢不走的护城河。',
+  xuqiu:'与其在低价红海里拼刺刀，不如顺着需求升级向上走——满足情绪与品质的高阶诉求，才能跳出价格战、赚到品牌溢价。',
+  jishu:'技术代差一旦拉开，追赶比领先更难：早点用上新工具，用效率换时间、用技术换人力，才能从“能做”做到“做极致”。',
+  xinxi:'信息越乱，判断力越值钱：练就一套筛真伪、穿情绪的本事，才能在噪音里做对决定、少踩坑。',
+  duoyuan:'与其靠命令压人，不如用尊重留人：给差异留空间、给个性松绑，人反而会从“要我干”变成“我要干”。',
+  shidai:'方向对了，慢一点也能到；方向错了，越快越危险：顺势而为，才能借时代的力，而不是逆着潮流硬扛。',
+  siwei:'昨天的经验是今天的天花板：先换脑子再换打法，用新思路解决新问题，才不会重演“用旧地图找新路”的困局。',
+  nengli:'与其闭门造车、事事亲力亲为，不如把专业的事交给专业的人——借外部资源补短板、用合作换时间，最快把短板变长板。',
+  pingjing:'光靠堆资源、堆时间，天花板始终在那里：换个打法、重新配置资源，才能跳出内卷，找到第二增长曲线。',
+  hexin:'没有独门绝活，就只能拼价格；练出一两样别人学不走的本事，才有定价权、才有不可替代性。',
+  jiangben:'省下来的每一分都是纯利润：砍掉流程冗余、压掉无效投入、提升人效，才能把钱花在真正创造价值的地方。',
+  jingjin:'样样通，往往样样松：与其到处追风口，不如把一件事做到极致，让专业本身成为最硬的通行证。',
+  xinren:'信任是最大的隐性资产：它让交易成本更低、合作更快达成，一次守信，胜过十次自我推销。',
+  pinpai:'产品可以被模仿，品牌无法被复制：让用户一想到这个品类就先想到你，才能跳出价格战、拿走长期溢价。',
+  nianxing:'拉新越来越贵，留住老用户才是性价比之王——一次好体验换来的复购与口碑，让生意越做越轻、越做越稳。',
+  fangxian:'跑得快不如走得稳：先把最坏情况想清楚、把风险敞口管住，才能既不错过机会，也不被一次意外击穿。',
+  changqi:'只看眼前，越走越窄；把时间拉长看，很多短期诱惑就不值一提——锚定长期价值，才能穿越波动、笑到最后。',
+  jili:'钱只能买来“人在”，买不来“心在”：给尊重、给成长、给意义，才能让人才从“要我干”变成“我要干”。',
+  ningju:'一盘散沙，再强的个人也白搭：用共同目标把人拧成一股绳，团队的上限才会远高于个人的总和。',
+  jisi:'一个人想得再好也有盲区：把更多视角凑在一起，好点子才会碰撞出来，决策才不容易跑偏。',
+  yinling:'与其在低标准里互相踩踏，不如做那个拉高标杆的人——把行业带向正向竞争，最终大家都受益。',
+  shengtai:'零和博弈终会把路走绝：与其抢别人的蛋糕，不如一起把蛋糕做大，让伙伴赚了、自己也赚得更多。',
+  shehui:'只算经济账，迟早算不下去：把社会责任扛起来，赢得的是公众信任和长久立足，这是最划算的长期投资。'
+};
+function upHTML(w){ return YOU2[w.id] ? `<div class="para"><span class="tag tag-up">主观 · 优点 · 升级</span><p class="ptext ptext-up">${YOU2[w.id]}</p></div>` : ''; }
 function findWord(id){ return allWords().find(w=>w.id===id); }
 
 /* ================= 常量 ================= */
@@ -584,6 +612,7 @@ function cardHTML(w){
       <p class="ptext">${w.you}</p>
       <button class="reveal">👁 点击显示</button>
     </div>
+    ${upHTML(w)}
   </article>`;
 }
 
@@ -706,6 +735,7 @@ function renderFlash(){
           <div class="flash-word small">${w.word}</div>
           <div class="para"><span class="tag tag-buzu">${isFan(w)?'反方 · 顾虑':'客观 · 不足'}</span><p class="ptext">${w.buzu}</p></div>
           <div class="para"><span class="tag tag-you">${isFan(w)?'推翻 · 话术':'主观 · 优点'}</span><p class="ptext">${w.you}</p></div>
+          ${upHTML(w)}
         </div>
       </div>
     </div>
@@ -768,6 +798,7 @@ function renderQuiz(){
           <p class="ptext">${w.you}</p>
         </div>
       </div>
+      ${upHTML(w)}
       <div class="quiz-actions">
         ${!state.quizRevealed?`<button class="btn primary" data-qa="reveal">显示答案</button>`
           :`<button class="btn ghost-green" data-qa="know">✔ 我会了</button>
@@ -844,6 +875,7 @@ function renderReview(){
         <span class="blur-hint">🔒 先回忆，再点「显示答案」</span>
         <div class="para"><span class="tag tag-buzu">${isFan(w)?'反方 · 顾虑':'客观 · 不足'}</span><p class="ptext">${w.buzu}</p></div>
         <div class="para"><span class="tag tag-you">${isFan(w)?'推翻 · 话术':'主观 · 优点'}</span><p class="ptext">${w.you}</p></div>
+        ${upHTML(w)}
       </div>
       <div class="quiz-actions">
         ${!state.reviewRevealed?`<button class="btn primary" data-rv="reveal">显示答案</button>`
@@ -882,6 +914,7 @@ function renderRandomCard(){
         <p class="ptext">${w.you}</p>
       </div>
     </div>
+    ${upHTML(w)}
     <div class="rm-actions">
       ${!state.randomRevealed
         ?`<button class="btn primary" data-rand="reveal">显示答案</button>`
@@ -974,7 +1007,7 @@ function copyWord(id){
   const fenVal = state.fen[id] || 'XX';
   const txt = isFan(w)
     ? `【${w.word}】${w.category.full}\n反方顾虑：${w.buzu}\n推翻话术：${w.you}`
-    : `【${w.word}】${w.category.full}\n分论点：${fenVal}\n客观性描述（不足）：${w.buzu}\n客观性描述（优点）：XXX。\n主观性描述（优点）：${w.you}`;
+    : `【${w.word}】${w.category.full}\n分论点：${fenVal}\n客观性描述（不足）：${w.buzu}\n客观性描述（优点）：XXX。\n主观性描述（优点）：${w.you}\n主观性描述（优点·升级）：${YOU2[w.id]||'（无）'}`;
   copyText(txt);
 }
 

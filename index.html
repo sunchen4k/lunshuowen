@@ -425,6 +425,21 @@ const DATA = [
       {id:"shengtai", word:"生态共建", buzu:"单打独斗的零和博弈已难以为继。恶性竞争消耗行业整体价值，陷入价格战怪圈，最终削弱所有人的生存空间。", you:"有助于打破零和博弈的困局，填补内部消耗的短板，从而赋能生态伙伴，实现共生共赢与良性循环。"},
       {id:"shehui", word:"社会责任", buzu:"企业若只追求经济利益而忽视社会责任，无异于社会“毒瘤”。极易导致公众信任缺失，恶化社会风气，最终被市场抛弃，难以长远发展。", you:"有助于打破只顾逐利的困局，填补公众信任的缺失，从而实现商业价值与社会价值的统一。"}
     ]
+  },
+  {
+    id:"fanfang", name:"反方 · 辩证", full:"反方理由 · 顾虑与推翻", color:"#8a5b7d",
+    icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+    words:[
+      {id:"f-neizi", word:"缺内部资源", buzu:"没钱、没技术、没人才；资金链紧张、技术储备空白、专业团队缺失、研发力量匮乏、人力成本高", you:"干中学、边干边学；借船出海、整合资源；在行动中积累、小步快跑、轻量化起步"},
+      {id:"f-waitiao", word:"缺外部条件", buzu:"政策不明、市场不成熟、行业规范空白；配套产业链不完善、基础设施落后、消费习惯未养成", you:"行动倒逼、用成绩换政策；以点带面、创造发展环境、做行业拓荒者"},
+      {id:"f-pachengben", word:"怕成本", buzu:"投入太大、不划算；前期投入高昂、回本周期漫长、隐性成本多", you:"算大账、看重长期价值；接受战略性亏损，今日投入换长期收益，短期省钱反而增加后期支出"},
+      {id:"f-pashibai", word:"怕失败", buzu:"万一失败了怎么办；投入全部打水漂、浪费时间精力、个人声誉受损", you:"风险藏机遇、快速试错、最小可行性；停滞风险更大，失败是学费、成功是熬出来的"},
+      {id:"f-payulun", word:"怕舆论", buzu:"怕被骂、怕被排挤；同行非议、大众不理解、网络负面评价；亲友反对、群体孤立、动机被曲解", you:"用结果说话，行动是最好的解释；坚守本心、不被外界杂音干扰"},
+      {id:"f-nanzhixing", word:"难执行", buzu:"制度方案难以落地，团队松散推诿、流程繁杂、基层抵触变革、员工主观积极性不足", you:"完善配套机制、权责对等、简化流程、制度保障；拆分目标、分步落地"},
+      {id:"f-nanxietong", word:"难协同", buzu:"意见分歧、沟通不畅；部门利益冲突、认知差异大、信息不互通、互不信任", you:"求同存异、寻找共同目标、换位思考共情；先解决情绪再沟通"},
+      {id:"f-nanfuzhong", word:"难服众", buzu:"被质疑、失控感；资历不足、下属不认可、话语权弱、方案说服力低、难以统筹", you:"贡献换权威、以德服人、用专业服人；用结果证明自己、价值引领"},
+      {id:"f-nangaibian", word:"难改变", buzu:"长期沿用固有经验，现有模式运转稳定，变革存在未知风险、调整阻力巨大", you:"经验只代表过去、不改变就被淘汰；拥抱变化、自我颠覆、与时俱进、主动破局"}
+    ]
   }
 ];
 
@@ -433,6 +448,7 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
 function allWords(){ const r=[]; DATA.forEach(c=>c.words.forEach(w=>r.push(Object.assign({},w,{category:c})))); return r; }
+function isFan(w){ return w.category && w.category.id==='fanfang'; }
 function findWord(id){ return allWords().find(w=>w.id===id); }
 
 /* ================= 常量 ================= */
@@ -550,21 +566,21 @@ function cardHTML(w){
         </button>
       </div>
     </div>
-    <div class="para">
+    ${!isFan(w)?`<div class="para">
       <span class="tag tag-fen">分论点</span>
       <input class="fen" data-id="${w.id}" value="${esc(fenVal)}" placeholder="XX · 点击填写你的分论点（自动保存）">
-    </div>
+    </div>`:''}
     <div class="para" data-bt="buzu">
-      <span class="tag tag-buzu">客观 · 不足</span>
+      <span class="tag tag-buzu">${isFan(w)?'反方 · 顾虑':'客观 · 不足'}</span>
       <p class="ptext">${w.buzu}</p>
       <button class="reveal">👁 点击显示</button>
     </div>
-    <div class="para">
+    ${!isFan(w)?`<div class="para">
       <span class="tag tag-youo">客观 · 优点</span>
       <p class="ptext placeholder-text">XXX<span class="hint">（占位符 · 结合主题补写客观优势）</span></p>
-    </div>
+    </div>`:''}
     <div class="para" data-bt="you">
-      <span class="tag tag-you">主观 · 优点</span>
+      <span class="tag tag-you">${isFan(w)?'推翻 · 话术':'主观 · 优点'}</span>
       <p class="ptext">${w.you}</p>
       <button class="reveal">👁 点击显示</button>
     </div>
@@ -683,13 +699,13 @@ function renderFlash(){
         <div class="flash-face flash-front">
           <div class="flash-cat" style="--cat:${cat.color}">${cat.full}</div>
           <div class="flash-word">${w.word}</div>
-          <div class="flash-fen"><span class="flabel">分论点</span>${esc(fenVal)}</div>
+          ${!isFan(w)?`<div class="flash-fen"><span class="flabel">分论点</span>${esc(fenVal)}</div>`:''}
           <div class="flash-hint">点卡片翻面 · 回忆理由</div>
         </div>
         <div class="flash-face flash-back">
           <div class="flash-word small">${w.word}</div>
-          <div class="para"><span class="tag tag-buzu">客观 · 不足</span><p class="ptext">${w.buzu}</p></div>
-          <div class="para"><span class="tag tag-you">主观 · 优点</span><p class="ptext">${w.you}</p></div>
+          <div class="para"><span class="tag tag-buzu">${isFan(w)?'反方 · 顾虑':'客观 · 不足'}</span><p class="ptext">${w.buzu}</p></div>
+          <div class="para"><span class="tag tag-you">${isFan(w)?'推翻 · 话术':'主观 · 优点'}</span><p class="ptext">${w.you}</p></div>
         </div>
       </div>
     </div>
@@ -743,10 +759,10 @@ function renderQuiz(){
           <option value="all" ${state.quizFilter==='all'?'selected':''}>全部</option>
         </select>
       </div>
-      <div class="quiz-prompt">第 ${state.quizIndex+1} / ${l.length} 题 · 请回忆该理由的「主观 · 优点」</div>
-      <div class="para"><span class="tag tag-fen">分论点</span><p class="ptext">${esc(fenVal)}</p></div>
-      <div class="para"><span class="tag tag-buzu">客观 · 不足（提示）</span><p class="ptext">${w.buzu}</p></div>
-      <div class="para"><span class="tag tag-you">主观 · 优点</span>
+      <div class="quiz-prompt">第 ${state.quizIndex+1} / ${l.length} 题 · 请回忆该理由的「${isFan(w)?'推翻 · 话术':'主观 · 优点'}」</div>
+      ${!isFan(w)?`<div class="para"><span class="tag tag-fen">分论点</span><p class="ptext">${esc(fenVal)}</p></div>`:''}
+      <div class="para"><span class="tag tag-buzu">${isFan(w)?'反方 · 顾虑（提示）':'客观 · 不足（提示）'}</span><p class="ptext">${w.buzu}</p></div>
+      <div class="para"><span class="tag tag-you">${isFan(w)?'推翻 · 话术':'主观 · 优点'}</span>
         <div class="quiz-answer ${state.quizRevealed?'revealed':''}" id="quizAnswer">
           <span class="blur-hint">🔒 先在心里默背，再点「显示答案」核对</span>
           <p class="ptext">${w.you}</p>
@@ -823,11 +839,11 @@ function renderReview(){
         <span class="lvl lvl${lvl}">${LEVELS[lvl]}</span>
       </div>
       <div class="quiz-prompt">第 ${state.reviewIndex+1} / ${q.length} · 回忆「不足」与「优点」</div>
-      <div class="para"><span class="tag tag-fen">分论点</span><p class="ptext">${esc(fenVal)}</p></div>
+      ${!isFan(w)?`<div class="para"><span class="tag tag-fen">分论点</span><p class="ptext">${esc(fenVal)}</p></div>`:''}
       <div class="quiz-answer ${state.reviewRevealed?'revealed':''}">
         <span class="blur-hint">🔒 先回忆，再点「显示答案」</span>
-        <div class="para"><span class="tag tag-buzu">客观 · 不足</span><p class="ptext">${w.buzu}</p></div>
-        <div class="para"><span class="tag tag-you">主观 · 优点</span><p class="ptext">${w.you}</p></div>
+        <div class="para"><span class="tag tag-buzu">${isFan(w)?'反方 · 顾虑':'客观 · 不足'}</span><p class="ptext">${w.buzu}</p></div>
+        <div class="para"><span class="tag tag-you">${isFan(w)?'推翻 · 话术':'主观 · 优点'}</span><p class="ptext">${w.you}</p></div>
       </div>
       <div class="quiz-actions">
         ${!state.reviewRevealed?`<button class="btn primary" data-rv="reveal">显示答案</button>`
@@ -858,9 +874,9 @@ function renderRandomCard(){
       <span class="lvl lvl${lvl}">${LEVELS[lvl]}</span>
     </div>
     <div class="rm-word">${w.word}</div>
-    <div class="para"><span class="tag tag-fen">分论点</span><p class="ptext">${esc(fenVal)}</p></div>
-    <div class="para"><span class="tag tag-buzu">客观 · 不足</span><p class="ptext">${w.buzu}</p></div>
-    <div class="para"><span class="tag tag-you">主观 · 优点</span>
+    ${!isFan(w)?`<div class="para"><span class="tag tag-fen">分论点</span><p class="ptext">${esc(fenVal)}</p></div>`:''}
+    <div class="para"><span class="tag tag-buzu">${isFan(w)?'反方 · 顾虑':'客观 · 不足'}</span><p class="ptext">${w.buzu}</p></div>
+    <div class="para"><span class="tag tag-you">${isFan(w)?'推翻 · 话术':'主观 · 优点'}</span>
       <div class="quiz-answer ${state.randomRevealed?'revealed':''}">
         <span class="blur-hint">🔒 先回忆，再点「显示答案」</span>
         <p class="ptext">${w.you}</p>
@@ -956,7 +972,9 @@ function toggleMaster(id){
 function copyWord(id){
   const w = findWord(id); if(!w) return;
   const fenVal = state.fen[id] || 'XX';
-  const txt = `【${w.word}】${w.category.full}\n分论点：${fenVal}\n客观性描述（不足）：${w.buzu}\n客观性描述（优点）：XXX。\n主观性描述（优点）：${w.you}`;
+  const txt = isFan(w)
+    ? `【${w.word}】${w.category.full}\n反方顾虑：${w.buzu}\n推翻话术：${w.you}`
+    : `【${w.word}】${w.category.full}\n分论点：${fenVal}\n客观性描述（不足）：${w.buzu}\n客观性描述（优点）：XXX。\n主观性描述（优点）：${w.you}`;
   copyText(txt);
 }
 

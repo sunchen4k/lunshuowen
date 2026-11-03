@@ -301,7 +301,7 @@ input,select{font-family:inherit;color:inherit}
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <h1>论说文<span class="seal">·</span>理由库</h1>
-      <p>正方理由 · 背诵卡</p>
+      <p>理由库 · 背诵卡</p>
     </div>
     <div class="search">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
@@ -309,7 +309,7 @@ input,select{font-family:inherit;color:inherit}
     </div>
     <nav class="nav" id="nav"></nav>
     <div class="side-foot">
-      <div class="side-stat"><span>已掌握</span><b id="statMastered">0 / 23</b></div>
+      <div class="side-stat"><span>已掌握</span><b id="statMastered">0 / 37</b></div>
       <div class="side-stat"><span>已收藏</span><b id="statFavs">0</b></div>
       <div class="side-stat"><span>今日已复习</span><b id="statToday">0 条</b></div>
       <button class="btn-reset" id="btnReset">清除全部学习进度</button>
@@ -325,7 +325,7 @@ input,select{font-family:inherit;color:inherit}
         </button>
         <div class="title-area">
           <h2 id="viewTitle">理由库</h2>
-          <p id="viewSub">23 条模板 · 5 大维度 · 正方理由</p>
+          <p id="viewSub">正方 23 条 · 反方 9 条 · 组合模板 5 组</p>
         </div>
       </div>
       <div class="controls">
@@ -442,6 +442,17 @@ const DATA = [
       {id:"f-nanfuzhong", word:"难服众", buzu:"被质疑、失控感；资历不足、下属不认可、话语权弱、方案说服力低、难以统筹", you:"贡献换权威、以德服人、用专业服人；用结果证明自己、价值引领"},
       {id:"f-nangaibian", word:"难改变", buzu:"长期沿用固有经验，现有模式运转稳定，变革存在未知风险、调整阻力巨大", you:"经验只代表过去、不改变就被淘汰；拥抱变化、自我颠覆、与时俱进、主动破局"}
     ]
+  },
+  {
+    id:"fanfang-moban", name:"反方组合模板", full:"反方组合模板 · 5 组万能组合（约120+160字）", color:"#6b5b95",
+    icon:'<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>',
+    words:[
+      {id:"moban1", word:"怕失败 + 怕成本", buzu:"当然，也有人对此心存顾虑。有人会说，万一XX失败了怎么办？投入全部打了水漂，白白浪费了时间与精力，还可能赔上个人声誉；也有人说，XX投入太大、实在不划算，前期投入高昂、回本周期漫长，隐性成本也不少，倒不如把有限的资源用在更稳妥处，落个心里安稳。", you:"但这些顾虑，其实大可不必。实际上，风险从来藏机遇，以最小成本快速试错、小步验证，停滞不前的风险远比尝试更大——失败不过是学费，成功本就是熬出来的；不仅如此，怕成本更要算大账、把眼光放得长远些，甘愿一时投入换取长期收益，短期省钱，反而要付出后期加倍补课的代价，这笔账并不难算。唯有如此，方能化阻力为动力、变压力为机遇。"},
+      {id:"moban2", word:"难执行 + 难协同", buzu:"诚然，这一主张难免招来质疑。有人会说，XX的方案制度难以落地，制度再好也难免流于形式，团队松散推诿、流程繁杂，基层抵触变革、员工积极性不足；也有人说，XX难免意见分歧、沟通不畅，部门利益冲突、认知差异大，信息不互通、彼此不信任，各执一词、难以统一。", you:"细究之下，这些担忧并不成立。实际上，症结总比办法少：难执行，就当完善配套机制、明确权责对等、简化冗余流程、以制度兜底保障，把大目标拆成小步骤、分步推进落地；难协同，就要求同存异、锚定共同目标，多换位思考、彼此共情，先解决情绪、再沟通分歧，共识自会在一次次磨合中水到渠成。唯有如此，方能化阻力为动力、变压力为机遇。"},
+      {id:"moban3", word:"怕舆论 + 难改变", buzu:"不可否认，现实中确有阻力。有人会说，XX容易招来非议，同行不解、大众质疑，网络上负面评价不断，甚至被排挤、被孤立，稍有不慎便成了众矢之的；也有人说，长期沿用固有经验、现有模式运转稳定，XX的变革存在未知风险、调整阻力巨大，风险与未知并存。", you:"然而，换个角度看，这些顾虑恰可化解。实际上，舆论有杂音，就当用结果说话，让行动成为最好的解释，坚守本心、不被外界杂音干扰，时间自会给出公正的答案，是非曲直终有定论；难改变，则须知经验只代表过去，不改变终将被时代淘汰，唯有拥抱变化、自我颠覆、与时俱进，方能主动破局。唯有如此，方能化阻力为动力、变压力为机遇。"},
+      {id:"moban4", word:"难改变 + 怕失败", buzu:"当然，也有人不无担忧。有人会说，现有模式运转多年、运转稳定、成效可期，XX变革存在未知风险、调整阻力巨大，稍有不慎便前功尽弃，一步不慎满盘皆输；也有人说，万一XX判断失误，投入付诸东流、声誉受损，倒不如维持现状、安安稳稳来得妥当，何必自寻风险。", you:"但其实，这些顾虑恰恰颠倒了因果。实际上，只看到眼前的风险，却看不到原地踏步才是更大的风险：经验只代表过去，不改变终将被时代淘汰，主动拥抱变化、自我颠覆，方能变压力为动力、变挑战为机遇；而且风险从来与机遇并存，快速试错、小步验证，失败不过是廉价的学费，不敢试才最贵，与其坐等被淘汰，不如主动去破局。唯有如此，方能化阻力为动力、变压力为机遇。"},
+      {id:"moban5", word:"怕成本 + 难执行", buzu:"诚然，这一观点也难免遭遇一些质疑。有人会说，XX投入太大、回本周期漫长，前期成本高昂、隐性成本又多，实在不划算，投入产出比堪忧；也有人说，XX的举措难以落地，流程繁杂、基层抵触变革，最终往往流于形式、不了了之，费钱费力却徒劳无功。", you:"然而，这些顾虑其实大可不必。实际上，怕成本，就当算大账、看重长期价值，接受一时投入换取长期收益，短期省钱反而要付出后期补课的代价，这笔账并不难算，眼光放长远些便知孰轻孰重；难执行，就当完善配套机制、简化流程、以制度保障，把目标拆分、分步落地，办法总比困难多，再难的事也能落地生根。唯有如此，方能化阻力为动力、变压力为机遇。"}
+    ]
   }
 ];
 
@@ -450,7 +461,7 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
 function allWords(){ const r=[]; DATA.forEach(c=>c.words.forEach(w=>r.push(Object.assign({},w,{category:c})))); return r; }
-function isFan(w){ return w.category && w.category.id==='fanfang'; }
+function isFan(w){ return w.category && (w.category.id==='fanfang' || w.category.id==='fanfang-moban'); }
 const YOU2 = {
   yingjia:'赢家通吃的格局下，不进则退。与其被动边缘化，不如主动占据有利位置，将先发优势转化为他人难以复制的壁垒，方能立于不败之地。',
   xuqiu:'与其在低价同质化中恶性竞争，不如顺应需求升级向上突破——满足消费者对品质与情感的高阶诉求，方能跳出价格竞争，赢得品牌溢价。',
@@ -1102,7 +1113,7 @@ function setView(v){
   state.view = v;
   $('#viewSeg').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
   const titles = {
-    browse:['理由库','23 条模板 · 5 大维度 · 正方理由'],
+    browse:['理由库','正方 23 条 · 反方 9 条 · 组合模板 5 组'],
     review:['每日复习','间隔重复 · 今日任务'],
     flash:['抽卡复习','翻面回忆 · 空格翻面'],
     quiz:['挖空默写','遮住优点 · 先回忆再核对']
@@ -1155,7 +1166,7 @@ document.addEventListener('click', e=>{
   const s = e.target.closest('[data-share]');
   if(s){
     const a = s.dataset.share;
-    if(a==='copy') copyText('推荐一个论说文理由背诵卡（管理类联考）📝\n5大维度、23条理由模板，带背诵遮罩、抽卡、间隔复习，离线可用。\n把附件《论说文背诵卡.html》发给朋友，双击即可打开（手机电脑都行）。');
+    if(a==='copy') copyText('推荐一个论说文理由背诵卡（管理类联考）📝\n7大分类、37条理由（正方23+反方9+组合模板5组），带背诵遮罩、抽卡、间隔复习，离线可用。\n把附件《论说文背诵卡.html》发给朋友，双击即可打开（手机电脑都行）。');
     else if(a==='export') exportBackup();
     else if(a==='import') $('#importFile').click();
     else if(a==='copy-url') copyText('把《论说文背诵卡.html》文件拖到 netlify.com/drop（免费、无需注册），几秒后即可得到一个网址链接发给朋友；也可以传到 GitHub Pages。');
